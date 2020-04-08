@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class RestaurantsController < ApplicationController
-  before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
+  before_action :set_restaurant, only: %i[show edit update destroy]
 
   # GET /restaurants
   # GET /restaurants.json
@@ -9,8 +11,7 @@ class RestaurantsController < ApplicationController
 
   # GET /restaurants/1
   # GET /restaurants/1.json
-  def show
-  end
+  def show; end
 
   # GET /restaurants/new
   def new
@@ -18,8 +19,7 @@ class RestaurantsController < ApplicationController
   end
 
   # GET /restaurants/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /restaurants
   # POST /restaurants.json
@@ -62,13 +62,14 @@ class RestaurantsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_restaurant
-      @restaurant = Restaurant.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def restaurant_params
-      params.require(:restaurant).permit(:name, :address, :phone_number, :category)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_restaurant
+    @restaurant = Restaurant.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def restaurant_params
+    params.require(:restaurant).permit(:name, :address, :phone_number, :category)
+  end
 end
